@@ -1,0 +1,8 @@
+﻿@model IEnumerable<NguyenDinhSang_241230832.Models.LoaiHang>
+<li><a href="/Home/Index" style="background-color: red; color: white;">Nguyễn Đình Sang</a></li>
+@foreach (var item in Model)
+{
+    <li>
+        <a href="javascript:void(0);" class="menu-danhmuc" data-maloai="@item.MaLoai">@item.TenLoai</a>
+    </li>
+}

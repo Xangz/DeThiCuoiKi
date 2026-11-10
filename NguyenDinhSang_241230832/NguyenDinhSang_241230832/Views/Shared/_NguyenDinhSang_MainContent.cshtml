@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NguyenDinhSang_241230832.Models.HangHoa>
+
+<!-- Begin Main -->
+<div class="main">
+    <div class="content">
+        <div class="content_top">
+            <div class="heading">
+                <h3 style="color: red; text-transform: uppercase; font-weight: bold;">Nguyễn Đình Sang</h3>
+            </div>
+            <div class="see">
+                <p><a href="#">See all Products</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- Thêm hàng hóa mới -->
+    <div class="see" style="margin-right: 15px;">
+        <p>
+            <a href="@Url.Action("Create", "Home")" style="background: #db1c25; color: #white; padding: 5px 10px; border-radius: 3px; font-weight: bold; text-decoration: none;">
+                + Thêm Hàng Hóa Mới
+            </a>
+        </p>
+    </div>
+        <!-- Khu vực hiển thị danh sách sản phẩm động từ CSDL -->
+        <div class="section group">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="grid_1_of_4 images_1_of_4" style="margin-bottom: 25px;">
+                        <a href="#">
+                            @if (!string.IsNullOrEmpty(item.Anh))
+                            {
+                                <img src="~/images/@item.Anh" alt="@item.TenHang" style="width: 100%; height: 160px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <img src="~/images/feature-pic1.jpg" alt="" />
+                            }
+                        </a>
+                        <h2>@item.TenHang</h2>
+                        <div class="price-details">
+                            <div class="price-number">
+                                <p><span class="rupees">@item.Gia.ToString()</span></p>
+                            </div>
+                            <div class="add-cart">                                
+                                <h4><a href="#">Add to Cart</a></h4>
+                            </div>
+                            <div class="clear"></div>
+                        </div>                    
+                    </div>
+                }
+            }
+            else
+            {
+                <p style="padding: 20px;">Không tìm thấy hàng hóa nào có giá từ 100 trở lên.</p>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Main -->

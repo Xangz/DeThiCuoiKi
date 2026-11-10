@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Free Home Shoppe Website Template | Home :: w3layouts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+    <!-- Begin Wrap -->
+    <div class="wrap">
+        <!-- Begin Header -->
+        @await Html.PartialAsync("_NguyenDinhSang_Header")
+        <!-- End Header -->
+        @RenderBody()
+        <!-- End Main -->
+    </div>
+    <!-- End Wrap -->
+    <!-- Begin Footer -->
+    @await Html.PartialAsync("_NguyenDinhSang_Footer")
+    <!-- End Footer -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+    $(document).ready(function () {
+        $(document).on("click", ".menu-danhmuc", function (e) {
+            e.preventDefault();
+            var maLoai = $(this).data("maloai");
+            $.ajax({
+                url: '/Home/GetHangHoaTheoLoai',
+                type: 'GET',
+                data: { maLoai: maLoai },
+                success: function (result) {
+                    $(".main").html(result);
+                },
+                error: function () {
+                    alert("Không thể tải được dữ liệu sản phẩm!");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
